@@ -1,0 +1,347 @@
+/* Font Face */
+@font-face {
+  font-family: 'Acropolis';
+  src: url('/fonts/acropolis-htf.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset all elements to ensure no default margins or padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make sure the app takes full viewport */
+#root {
+  width: 100%;
+  height: 100vh;
+  background: #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Phone Frame Styles */
+.phone {
+  width: 375px;
+  height: 812px;
+  background: #1a1a1a;
+  border-radius: 40px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 12px solid #1a1a1a;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 30px;
+  background: #1a1a1a;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 10;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: url('/images/phone.jpg') center/cover no-repeat;
+  border-radius: 28px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.phone-home-button {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 5px;
+  background: white;
+  border-radius: 5px;
+}
+
+.phone-time {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.app-button {
+  position: absolute;
+  top: 100px;
+  left: 25px;
+  width: 80px;
+  height: 80px;
+  background: none;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  z-index: 5;
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.app-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.app-button:active {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.app-button-container {
+  position: absolute;
+  top: 100px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-button {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+
+.app-label {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.app-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  border: none;
+  background: none;
+  display: block;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  color: white;
+  font-family: 'Acropolis', sans-serif;
+}
+
+.name-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+  width: auto;
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loading-screen h1 {
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+               0 0 30px rgba(255, 255, 255, 0.4),
+               0 0 60px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-screen h1 {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.loading-screen h1:first-child {
+  font-size: 4rem;
+}
+
+.loading-screen h1:nth-child(2) {
+  font-size: 3.7rem;
+}
+
+.loading-screen h1:last-child {
+  font-size: 3.2rem;
+  margin-right: 0; /* Reset margin for centered layout */
+}
+
+/* Loading screen container */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Blue background */
+.blue-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #007bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.blue-background.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Name container */
+.name-container {
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* When blue background is shown */
+.blue-background-visible .name-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Fade transition */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.app-fullscreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.app-fullscreen-image {
+  max-width: 95%;
+  max-height: 95vh;
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.close-button:active {
+  transform: scale(0.95);
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-out {
+  animation: fadeOut 0.2s ease-out;
+}
