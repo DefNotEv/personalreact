@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import Portfolio from './components/Portfolio'
@@ -74,7 +74,7 @@ function PhoneFrame(): React.ReactNode {
       {showApp && (
         <div className={`loading-screen ${fadeOut ? 'fade-out' : 'fade-in'}`}>
           <div className="app-fullscreen">
-            <LoadingScreen onClose={handleAppClick} />
+            <LoadingScreen />
           </div>
         </div>
       )}
@@ -82,15 +82,10 @@ function PhoneFrame(): React.ReactNode {
   )
 }
 
-interface LoadingScreenProps {
-  onClose?: () => void;
-}
-
-function LoadingScreen({ onClose }: LoadingScreenProps): React.ReactNode {
+function LoadingScreen(): React.ReactNode {
   const navigate = useNavigate();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [showBlueBackground, setShowBlueBackground] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
   const [textFadeOut, setTextFadeOut] = useState(false);
   const [navigated, setNavigated] = useState(false);
 
@@ -141,19 +136,9 @@ function LoadingScreen({ onClose }: LoadingScreenProps): React.ReactNode {
     };
   }, [navigate, navigated]);
 
-  const handleClose = useCallback(() => {
-    setFadeOut(true);
-    setTimeout(() => {
-      if (onClose) {
-        onClose();
-      } else {
-        navigate('/');
-      }
-    }, 500); // Match this with the CSS transition duration
-  }, [onClose, navigate]);
 
   return (
-    <div className={`loading-screen ${showBlueBackground ? 'blue-background-visible' : ''} ${fadeOut ? 'fade-out' : ''}`}>
+    <div className={`loading-screen ${showBlueBackground ? 'blue-background-visible' : ''}`}>
       <div className={`name-container ${textFadeOut ? 'fade-out' : ''}`}>
         <h1>EVELYN</h1>
         <h1>HANNAH</h1>
