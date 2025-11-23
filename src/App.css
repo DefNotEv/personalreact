@@ -176,6 +176,36 @@
   font-family: 'Acropolis', sans-serif;
 }
 
+.legal-disclaimer {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  font-size: 8px;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  overflow: hidden;
+  text-shadow: none;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+  margin: 0 auto;
+  max-width: 95%;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.legal-disclaimer:not(.fade-out) {
+  opacity: 0.6;
+}
+
+.legal-disclaimer.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
 .name-container {
   display: flex;
   flex-direction: column;
@@ -191,12 +221,14 @@
   margin: 0;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
                0 0 30px rgba(255, 255, 255, 0.4),
                0 0 60px rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 1;
+  font-weight: normal;
+  font-family: 'Acropolis', sans-serif;
 }
 
 @keyframes fadeInUp {
@@ -296,32 +328,6 @@
   border: none;
   box-shadow: none;
   border-radius: 0;
-}
-
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s;
-}
-
-.close-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.close-button:active {
-  transform: scale(0.95);
 }
 
 .fade-in {

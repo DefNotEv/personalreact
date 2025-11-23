@@ -145,8 +145,11 @@ function LoadingScreen(): React.ReactNode {
         <h1>Z.S. WONG</h1>
       </div>
       
+      <div className={`legal-disclaimer ${textFadeOut ? 'fade-out' : ''}`}>
+        This website is a parody of Brawl Stars and Clash Royale. This is not endorsed by Supercell. For more info see Supercell's Fan Content Policy.
+      </div>
+      
       <div className={`blue-background ${showBlueBackground ? 'visible' : ''}`}>
-        {/* Add any content here if needed */}
       </div>
     </div>
   );

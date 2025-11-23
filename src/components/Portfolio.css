@@ -1,3 +1,20 @@
+.portfolio-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #007bff;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.portfolio-overlay.fade-out {
+  opacity: 0;
+}
+
 .portfolio-container {
   position: fixed;
   top: 0;
@@ -18,6 +35,12 @@
   height: 5%;
   background-color: #000;
   z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.status-bar.visible {
+  opacity: 1;
 }
 
 .back-button {
@@ -42,18 +65,62 @@
   min-width: 100px;
   outline: none;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-  transition: all 0.2s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease-in, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.back-button:focus {
-  outline: 2px solid #ffffff;
-  outline-offset: 2px;
+.back-button.visible {
+  opacity: 1;
 }
 
-.back-button:active,
-.back-button:focus:active {
+.back-button:hover,
+.back-button:focus,
+.back-button:active {
+  transform: skewX(-5deg);
   outline: none;
+  box-shadow: none;
+} 
+
+.back-button:active {
   transform: skewX(-5deg) scale(0.98);
+  outline: none;
+}
+
+.top-right-parallelogram {
+  position: fixed;
+  top: 10px;
+  right: -4px;
+  z-index: 10;
+  padding: 40px 35px;
+  background: linear-gradient(to bottom, #33394e 90%, #2a2f3e 90%);
+  border: 4px solid #000;
+  border-bottom-left-radius: 12px;
+  transform: skewX(5deg);
+  transform-origin: top right;
+  height: 80px;
+  min-width: 100px;
+  box-shadow: -3px 3px 6px rgba(0,0,0,0.2);
+  pointer-events: none; /* Make it non-interactive */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.top-right-parallelogram.visible {
+  opacity: 1;
+}
+
+.top-right-parallelogram .headshot {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  transform: skewX(-5deg); /* Counteract the parent's skew */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .back-chevron {
