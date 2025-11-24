@@ -43,26 +43,32 @@
   opacity: 1;
 }
 
-.back-button {
+.top-left-container {
   position: fixed;
   top: 10px;
-  left: -4px; /* Adjusted to account for the 4px border width */
+  left: 0;
   z-index: 10;
-  padding: 40px 45px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.back-button {
+  position: relative;
+  left: -4px; /* Adjusted to account for the 4px border width */
+  padding: 2.5% 3%; /* Relative padding based on viewport height */
   background: linear-gradient(to bottom, #33394e 90%, #2a2f3e 90%);
   color: #fff;
   border: 4px solid #000; /* Added black border */
   border-bottom-right-radius: 12px;
   cursor: pointer;
-  font-size: 36px;
-  font-weight: bold;
   transform: skewX(-5deg);
   transform-origin: top left;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  min-width: 100px;
+  height: 10vh; /* Increased from 7.5vh to make it taller */
+  min-width: 9vw; /* Relative to viewport width */
   outline: none;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
   opacity: 0;
@@ -86,27 +92,41 @@
   outline: none;
 }
 
-.top-right-parallelogram {
+.top-right-container {
   position: fixed;
   top: 10px;
-  right: -4px;
+  right: 0;
   z-index: 10;
-  padding: 40px 35px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.top-right-parallelogram {
+  position: relative;
+  right: -10px; /* Account for border width */
+  padding: 0 3%;
   background: linear-gradient(to bottom, #33394e 90%, #2a2f3e 90%);
+  color: #fff;
   border: 4px solid #000;
   border-bottom-left-radius: 12px;
-  transform: skewX(5deg);
+  transform: skewX(-5deg);
   transform-origin: top right;
-  height: 80px;
-  min-width: 100px;
+  height: 10vh; /* Increased from 7.5vh to match the back button */
+  min-width: 9vw;
+  max-width: 100%;
   box-shadow: -3px 3px 6px rgba(0,0,0,0.2);
-  pointer-events: none; /* Make it non-interactive */
+  pointer-events: none;
   overflow: hidden;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .top-right-parallelogram.visible {
@@ -114,21 +134,53 @@
 }
 
 .top-right-parallelogram .headshot {
-  width: 70px;
-  height: 70px;
+  width: 7vh; /* Increased from 6vh to make the headshot larger */
+  height: 7vh; /* Increased from 6vh to make the headshot larger */
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  transform: skewX(-5deg); /* Counteract the parent's skew */
+  transform: skewX(5deg);
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+/* Name text styling */
+.name-text {
+  position: fixed;
+  top: 5.2%; /* Half of the status bar height to vertically center */
+  transform: translateY(-50%); /* Center vertically */
+  left: 10%; /* Position to the right of the back button */
+  font-family: 'Lilita One', sans-serif;
+  color: white;
+  font-size: 1.75em; /* 20px / 16px = 1.25em */
+  text-transform: uppercase;
+  letter-spacing: 0.0625em; /* 1px / 16px = 0.0625em */
+  text-shadow: 
+    2px 2px 0 #000,
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; /* Multiple shadows for border effect */
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  white-space: nowrap;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+.name-text.visible {
+  opacity: 1;
 }
 
 .back-chevron {
   transform: skewX(5deg);
   display: inline-block;
-  font-size: 150px;
+  font-size: 11vh; /* Relative to viewport height */
   line-height: 0.5; /* Adjusted to better center the chevron */
-  margin-top: -48px; /* Further adjustment for vertical centering */
+  margin-top: -3.2vh; /* Relative to viewport height */
   font-weight: bold;
   vertical-align: middle; /* Helps with vertical alignment */
   -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */

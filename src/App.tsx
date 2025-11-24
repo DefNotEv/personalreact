@@ -62,7 +62,7 @@ function PhoneFrame(): React.ReactNode {
                 onClick={handleAppClick}
                 ref={appRef}
               >
-                <img src="/images/app.png" alt="App" className="app-icon" />
+                <img src="/images/app.jpg" alt="App" className="app-icon" />
               </div>
               <div className="app-label">click!</div>
             </div>

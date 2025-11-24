@@ -48,19 +48,26 @@ function Portfolio(): React.ReactNode {
   return (
     <div className={`portfolio-container ${showOverlay ? 'show-overlay' : ''}`}>
       <StatusBar visible={showContent} />
-      <button 
-        className={`back-button ${showContent ? 'visible' : ''}`}
-        onClick={handleBack}
-        aria-label="Back to home"
-      >
-        <span className="back-chevron">‹</span>
-      </button>
-      <div className={`top-right-parallelogram ${showContent ? 'visible' : ''}`}>
-        <img 
-          src="/images/headshot.jpg" 
-          alt="Evelyn Wong" 
-          className="headshot"
-        />
+      <div className="top-left-container">
+        <button 
+          className={`back-button ${showContent ? 'visible' : ''}`}
+          onClick={handleBack}
+          aria-label="Back to home"
+        >
+          <span className="back-chevron">‹</span>
+        </button>
+        <div className={`name-text ${showContent ? 'visible' : ''}`}>
+          EVELYN HANNAH Z.S. WONG
+        </div>
+      </div>
+      <div className="top-right-container">
+        <div className={`top-right-parallelogram ${showContent ? 'visible' : ''}`}>
+          <img 
+            src="/images/headshot.jpg" 
+            alt="Evelyn Wong" 
+            className="headshot"
+          />
+        </div>
       </div>
     </div>
   );
