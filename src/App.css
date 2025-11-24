@@ -17,18 +17,36 @@
 /* Make sure the app takes full viewport */
 #root {
   width: 100%;
-  height: 100vh;
   background: #f0f0f0;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/* Phone Frame Container */
+.phone-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 /* Phone Frame Styles */
 .phone {
-  width: 375px;
-  height: 812px;
+  --phone-ratio: 0.4618; /* 375/812 aspect ratio */
+  --phone-max-width: 375px;
+  
+  width: 60vw;
+  max-width: var(--phone-max-width);
+  height: calc(90vw * (1 / var(--phone-ratio)));
+  max-height: 90vh;
+  
   background: #1a1a1a;
   border-radius: 40px;
   position: relative;
@@ -38,6 +56,23 @@
   opacity: 0;
   animation: fadeIn 0.5s ease-out forwards;
   animation-delay: 0.2s;
+  transform-origin: center;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .phone {
+    border-radius: 30px;
+    border-width: 10px;
+  }
+}
+
+/* Adjust for very small screens */
+@media (max-width: 480px) {
+  .phone {
+    border-radius: 25px;
+    border-width: 8px;
+  }
 }
 
 @keyframes fadeIn {
