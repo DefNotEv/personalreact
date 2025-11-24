@@ -8,6 +8,7 @@ function Portfolio(): React.ReactNode {
   const navigate = useNavigate();
   const [showOverlay, setShowOverlay] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -41,12 +42,19 @@ function Portfolio(): React.ReactNode {
     };
   }, []);
 
-  const handleBack = () => {
+  const handleBack = async () => {
+    // Start exit animation
+    setIsExiting(true);
+    
+    // Wait for the fade-out animation to complete
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Navigate back after animation completes
     navigate('/');
   };
 
   return (
-    <div className={`portfolio-container ${showOverlay ? 'show-overlay' : ''}`}>
+    <div className={`portfolio-container ${showOverlay ? 'show-overlay' : ''} ${isExiting ? 'exiting' : ''}`}>
       <StatusBar visible={showContent} />
       <div className="top-left-container">
         <button 

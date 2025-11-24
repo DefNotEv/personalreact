@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import './App.css'
 import Portfolio from './components/Portfolio'
+import OrientationWrapper from './components/OrientationWrapper'
 
 function Clock(): React.ReactNode {
   const [currentTime, setCurrentTime] = useState('')
@@ -157,13 +158,15 @@ function LoadingScreen(): React.ReactNode {
 
 function App(): React.ReactNode {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<PhoneFrame />} />
-        <Route path="/loading-screen" element={<LoadingScreen />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-      </Routes>
-    </div>
+    <OrientationWrapper>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<PhoneFrame />} />
+          <Route path="/loading-screen" element={<LoadingScreen />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+        </Routes>
+      </div>
+    </OrientationWrapper>
   )
 }
 
