@@ -28,6 +28,65 @@
   transition: background-color 0.4s ease-in-out, opacity 0.5s ease-in-out;
 }
 
+.portfolio {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  font-family: 'Acropolis', sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px; /* Space for the bottom bar */
+  box-sizing: border-box;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background-color: rgba(20, 20, 20, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  padding: 0 20px;
+}
+
+.bottom-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bottom-bar p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: white;
+}
+
 /* Exit animation */
 .portfolio-container.exiting {
   opacity: 0.8;
@@ -37,7 +96,9 @@
 .portfolio-container.exiting .status-bar,
 .portfolio-container.exiting .back-button,
 .portfolio-container.exiting .name-text,
-.portfolio-container.exiting .top-right-parallelogram {
+.portfolio-container.exiting .top-right-parallelogram,
+.portfolio-container.exiting .top-right-short-parallelogram,
+.portfolio-container.exiting .social-icon {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
@@ -149,16 +210,171 @@
 }
 
 .top-right-parallelogram .headshot {
-  width: 7vh; /* Increased from 6vh to make the headshot larger */
-  height: 7vh; /* Increased from 6vh to make the headshot larger */
-  min-width: 50px;
-  min-height: 50px;
+  width: 70%; /* Relative to parallelogram height */
+  height: 70%; /* Maintain aspect ratio */
+  max-width: 7vh; /* Maximum size */
+  max-height: 7vh; /* Maximum size */
+  min-width: 30px;
+  min-height: 30px;
   border-radius: 50%;
   object-fit: cover;
   transform: skewX(5deg);
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  transition: width 0.2s ease, height 0.2s ease;
+  transition: all 0.3s ease;
+}
+
+/* Container for short parallelograms */
+.short-parallelograms {
+  position: fixed;
+  top: 1.5%;
+  right: 8%;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  height: 10vh;
+  padding-top: 5px;
+}
+
+/* Shorter parallelograms */
+.top-right-short-parallelogram {
+  width: auto; /* Changed from fixed width to auto to accommodate text */
+  min-width: 12.5vh; /* Minimum width to maintain size */
+  height: 5.5vh; /* Reduced from 7vh to 5.5vh */
+  background: #000000; /* Pure black */
+  border: 2px solid #000;
+  border-bottom-left-radius: 4px; /* Reduced from 8px */
+  transform: skewX(-5deg);
+  margin-right: 5vh;
+  opacity: 0;
+  transition: opacity 0.5s ease-in, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  box-shadow: -2px 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: visible; /* Allow the circle to be visible outside the element */
+  padding: 0 2vh 0 3.5vh; /* Added right padding for text */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vh;
+  text-decoration: none;
+  color: white;
+  font-family: 'Lilita One', cursive;
+  font-weight: normal;
+  font-size: 1.5vh;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Ensure text stays white on hover */
+.top-right-short-parallelogram:hover,
+.top-right-short-parallelogram:hover .website-name {
+  color: white;
+  text-decoration: none;
+}
+
+.website-name {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  padding: 0 1.5vh 0 0.5vh; /* More padding on the right, less on the left */
+  font-family: 'Lilita One', cursive;
+  font-weight: normal;
+  font-size: 1.5vh;
+  letter-spacing: 0.05em;
+  margin-left: 1.5vh; /* Push text slightly to the right */
+  text-align: right; /* Align text to the right within its container */
+  flex-grow: 1; /* Allow the text to take available space */
+}
+
+.social-icon {
+  position: absolute;
+  left: -2.75vh;
+  top: 50%;
+  transform: translateY(-50%) skewX(5deg);
+  width: 5.5vh;
+  height: 5.5vh;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3.5vh;
+  z-index: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effects */
+.top-right-short-parallelogram:hover {
+  transform: skewX(-5deg) scale(1.05);
+  z-index: 2;
+}
+
+.top-right-short-parallelogram:hover .social-icon {
+  transform: translateY(-50%) skewX(5deg) scale(1.1);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Active/pressed effect */
+.top-right-short-parallelogram:active {
+  transform: skewX(-5deg) scale(0.98);
+}
+
+.top-right-short-parallelogram:active .social-icon {
+  transform: translateY(-50%) skewX(5deg) scale(0.95);
+}
+
+/* Focus styles for accessibility */
+.top-right-short-parallelogram:focus {
+  outline: none;
+}
+
+/* Show focus ring only for keyboard navigation */
+.top-right-short-parallelogram:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Remove focus ring for mouse/touch users */
+.top-right-short-parallelogram:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* LinkedIn (first circle) */
+.social-icon.linkedin {
+  background: #0a66c2;
+}
+
+.top-right-short-parallelogram:hover .linkedin {
+  background: #004182;
+}
+
+/* Instagram (second circle) */
+.social-icon.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+/* GitHub (third circle) */
+.social-icon.github {
+  background: #333;
+}
+
+.top-right-short-parallelogram:hover .github {
+  background: #24292e;
+}
+
+/* X/Twitter (fourth circle) */
+.social-icon.x {
+  background: #000;
+}
+
+.top-right-short-parallelogram:hover .x {
+  background: #14171a;
+}
+
+.top-right-short-parallelogram.visible {
+  opacity: 1;
 }
 
 /* Name text styling */
@@ -169,21 +385,34 @@
   left: 10%; /* Position to the right of the back button */
   font-family: 'Lilita One', sans-serif;
   color: white;
-  font-size: 1.75em; /* 20px / 16px = 1.25em */
+  font-size: clamp(1rem, 1.5vw + 0.5rem, 1.8rem);
   text-transform: uppercase;
-  letter-spacing: 0.0625em; /* 1px / 16px = 0.0625em */
+  letter-spacing: 0.0625em;
   text-shadow: 
     2px 2px 0 #000,
     -2px -2px 0 #000,
     2px -2px 0 #000,
     -2px 2px 0 #000,
-    2px 2px 0 #000; /* Multiple shadows for border effect */
+    2px 2px 0 #000;
   opacity: 0;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in, font-size 0.3s ease;
   white-space: nowrap;
   z-index: 10;
   margin: 0;
   padding: 0;
+  line-height: 1.2;
+}
+
+/* Adjust text shadow for better visibility at smaller sizes */
+@media (max-width: 768px) {
+  .name-text {
+    text-shadow: 
+      1px 1px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
 }
 
 .name-text.visible {

@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { RiInstagramFill } from 'react-icons/ri';
 import './Portfolio.css';
 import StatusBar from './StatusBar';
 
@@ -22,9 +25,19 @@ function Portfolio(): React.ReactNode {
       } catch (error) {
         console.error('Error playing sound:', error);
       }
+    }
+    // Try to play immediately
+    playSound();
+    
+    // Also set up a user interaction listener for autoplay policies
+    const handleUserInteraction = () => {
+      playSound();
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
     
-    playSound();
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('keydown', handleUserInteraction);
     
     // Show content after a short delay
     const timer = setTimeout(() => {
@@ -68,6 +81,56 @@ function Portfolio(): React.ReactNode {
           EVELYN HANNAH Z.S. WONG
         </div>
       </div>
+      <div className="short-parallelograms">
+        <a 
+          href="https://www.linkedin.com/in/evelynhwong" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`top-right-short-parallelogram ${showContent ? 'visible' : ''}`}
+          aria-label="LinkedIn"
+        >
+          <div className="social-icon linkedin">
+            <FaLinkedinIn />
+          </div>
+          <span className="website-name">LinkedIn</span>
+        </a>
+        <a 
+          href="https://www.instagram.com/wong.zs" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`top-right-short-parallelogram ${showContent ? 'visible' : ''}`}
+          aria-label="Instagram"
+        >
+          <div className="social-icon instagram">
+            <RiInstagramFill />
+          </div>
+          <span className="website-name">Insta</span>
+        </a>
+        <a 
+          href="https://github.com/defnotev" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`top-right-short-parallelogram ${showContent ? 'visible' : ''}`}
+          aria-label="GitHub"
+        >
+          <div className="social-icon github">
+            <FaGithub />
+          </div>
+          <span className="website-name">GitHub</span>
+        </a>
+        <a 
+          href="https://twitter.com/evelynhannah_" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`top-right-short-parallelogram ${showContent ? 'visible' : ''}`}
+          aria-label="X (Twitter)"
+        >
+          <div className="social-icon x">
+            <FaXTwitter />
+          </div>
+          <span className="website-name">X</span>
+        </a>
+      </div>
       <div className="top-right-container">
         <div className={`top-right-parallelogram ${showContent ? 'visible' : ''}`}>
           <img 
@@ -77,6 +140,13 @@ function Portfolio(): React.ReactNode {
           />
         </div>
       </div>
+      
+      {/* Bottom Bar */}
+      <footer className="bottom-bar">
+        <div className="bottom-bar-content">
+          {/* Empty content as requested */}
+        </div>
+      </footer>
     </div>
   );
 }

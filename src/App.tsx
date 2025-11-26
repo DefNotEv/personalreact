@@ -125,7 +125,7 @@ function LoadingScreen(): React.ReactNode {
       }, 150); // Blue background appears 150ms after text starts fading
       
       return () => clearTimeout(blueBgTimer);
-    }, 1700); // Start fading text after 1.7 seconds
+    }, 2500); // Start fading text after 1.7 seconds
     
     // Cleanup function
     return () => {

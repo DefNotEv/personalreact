@@ -44,7 +44,7 @@
   
   width: 60vw;
   max-width: var(--phone-max-width);
-  height: calc(90vw * (1 / var(--phone-ratio)));
+  height: calc(60vw * (1 / var(--phone-ratio)));
   max-height: 90vh;
   
   background: #1a1a1a;
