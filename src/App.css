@@ -242,6 +242,7 @@
   max-width: 95%;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease-out forwards;
+  color: #aca5a56f;
   animation-delay: 0.5s;
 }
 
@@ -293,7 +294,8 @@
 
 .loading-screen h1 {
   opacity: 0;
-  animation: fadeInUp 0.5s ease-out forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out forwards 0.5s;
 }
 
 .loading-screen h1:first-child {

@@ -9,7 +9,7 @@ const OrientationWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
     const aspectRatio = window.innerWidth / window.innerHeight;
     const isPortrait = window.innerHeight > window.innerWidth;
     // Check if viewport is between 1:1 and 39:25 ratio
-    const isNarrowViewport = aspectRatio > 1 && aspectRatio < (39/25);
+    const isNarrowViewport = aspectRatio > 1 && aspectRatio < (40/25);
     
     setIsViewportTooNarrow(isNarrowViewport);
     setIsPortrait(isPortrait);
@@ -45,8 +45,8 @@ const OrientationWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
     return (
       <div className="orientation-message">
         <div className="message-box">
-          <h2>Please rotate your device</h2>
-          <p>This website is best viewed in landscape mode</p>
+          <h2>Please adjust viewport size</h2>
+          <p>This website is best viewed in an aspect ratio wider than 8:5</p>
         </div>
       </div>
     );

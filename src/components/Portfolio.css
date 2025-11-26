@@ -56,6 +56,21 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 100;
   padding: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.bottom-bar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-container.exiting .bottom-bar {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .bottom-bar-content {
@@ -65,6 +80,266 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Scrollable Section */
+.scrollable-section {
+  position: fixed;
+  top: 8%;
+  bottom: 4%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.scrollable-section.visible {
+  opacity: 1;
+}
+
+.scrollable-content {
+  display: flex;
+  gap: 20px;
+  padding: 0 40px 0 calc(6% + 20px);
+  overflow-x: auto;
+  height: 100%;
+  align-items: center;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.scrollable-content::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.scrollable-parallelogram {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-5deg);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 6px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  cursor: default;
+}
+
+.scrollable-parallelogram:first-child {
+  width: 55%; /* Wider width */
+  background: #ff0000; /* Red background */
+  border: 3px solid #000000; /* Black border */
+  border-bottom: 6px solid #000000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.scrollable-section.visible .scrollable-parallelogram:first-child {
+  opacity: 1;
+}
+
+.portfolio-container.exiting .scrollable-parallelogram:first-child {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.scrollable-parallelogram:first-child::before {
+  content: '';
+  height: 13%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.scrollable-parallelogram:first-child .parallelogram-content {
+  margin-top: 13%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding: 0 2%;
+  box-sizing: border-box;
+  transform: skewX(0deg);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.grid-side {
+  width: 65%;
+  margin-left: 3%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.carousel-side {
+  width: 33%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10; /* Create a new stacking context */
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0);
+  z-index: 11; /* Higher than platform but lower than image */
+}
+
+.carousel-slide.active {
+  left: 0;
+  opacity: 1;
+  z-index: 11;
+  transform: translateX(0);
+}
+
+.carousel-slide.previous {
+  left: -100%;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.carousel-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image {
+  max-width: 80%;
+  max-height: 70%;
+  object-fit: contain;
+  transform: skewX(5deg);
+  position: relative;
+  z-index: 12; /* Higher than platform */
+  margin-top: -10%;
+}
+
+.carousel-platform {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  transform: skewX(5deg);
+  bottom: 2%;
+  left: 54%;
+  transform: skewX(5deg) translateX(-50%);
+  z-index: 5; /* Lower than carousel images but still above container */
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+  pointer-events: none;
+}
+
+.grid-item {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.grid-item h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.grid-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.parallelogram-content {
+  transform: skewX(8deg);
+  padding: 20px;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.parallelogram-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.parallelogram-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scroll-hint {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
 }
 
 .bottom-bar p {
@@ -157,11 +432,12 @@
 
 .back-button:hover,
 .back-button:focus,
+.back-button:focus-visible,
 .back-button:active {
   transform: skewX(-5deg);
   outline: none;
   box-shadow: none;
-} 
+}
 
 .back-button:active {
   transform: skewX(-5deg) scale(0.98);
