@@ -274,10 +274,10 @@
 
 .carousel-platform {
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: auto;
   transform: skewX(5deg);
-  bottom: 2%;
+  bottom: 4%;
   left: 54%;
   transform: skewX(5deg) translateX(-50%);
   z-index: 5; /* Lower than carousel images but still above container */
