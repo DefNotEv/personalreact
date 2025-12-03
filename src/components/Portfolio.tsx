@@ -182,13 +182,6 @@ function Portfolio(): React.ReactNode {
               {/* Right side - Carousel */}
               <div className="carousel-side">
                 <div className="carousel-container">
-                  {/* Static platform image */}
-                  <img 
-                    src="/images/platform.webp" 
-                    alt=""
-                    className="carousel-platform"
-                  />
-                  
                   {/* Carousel slides */}
                   {[1, 2, 3].map((num, index) => (
                     <div 
